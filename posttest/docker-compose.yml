@@ -1,0 +1,29 @@
+version:  '3'
+
+networks:
+  pgsite:
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: databases
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-db.d/init.sql
+
+    networks:
+      - pgsite
+  pg4:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "8080:5432"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'postgres@domain.com'
+      PGADMIN_DEFAULT_PASSWORD: 'banana'
+    networks:
+      - pgsite

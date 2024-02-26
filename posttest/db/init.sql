@@ -1,6 +1,8 @@
 -- Drop Table if they are existed
-DROP TABLE IF EXISTS userProfile CASCADE;
-DROP TABLE IF EXISTS Lotto CASCADE;
+DROP TABLE IF EXISTS userProfile ;
+DROP TABLE IF EXISTS Lotto ;
+DROP TABLE IF EXISTS Administrator;
+DROP TABLE IF EXISTS sys_transaction;
 
 CREATE TABLE userProfile (
     user_Id SERIAL PRIMARY KEY,
@@ -13,7 +15,7 @@ CREATE TABLE Lotto (
     lotto_Id SERIAL PRIMARY KEY,
     lotto_Number VARCHAR(6) NOT NULL,
     lotto_Status VARCHAR ("Available","On_Hold", "Completed" ) NOT NULL,
-    TIMESTAMP;
+    lotto_Date TIMESTAMP;
 );
 
 CREATE TABLE Administrator (
@@ -23,7 +25,7 @@ CREATE TABLE Administrator (
     admin_Password VARCHAR NOT NULL,
 );
 
-CREATE TABLE Transaction (
+CREATE TABLE sys_transaction (
     transaction_Id SERIAL PRIMARY KEY,
     create_Date TIMESTAMP,
     update_Date TIMESTAMP,
